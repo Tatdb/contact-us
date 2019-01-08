@@ -12,7 +12,6 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SubmissionService } from './submission.service';
 import { AlertsModule } from 'angular-alert-module';
-import { NotifierModule } from 'angular-notifier';
 
 
 
@@ -30,8 +29,7 @@ import { NotifierModule } from 'angular-notifier';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    AlertsModule.forRoot(),
-    NotifierModule
+    AlertsModule.forRoot(),    
     
   ],
   providers: [SubmissionService],

@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubmissionService } from '../submission.service';
-import { Messages } from '../class/messages';
 import { AlertsService } from 'angular-alert-module';
-import { NotifierService } from 'angular-notifier';
 
 
 @Component({
@@ -15,6 +13,7 @@ import { NotifierService } from 'angular-notifier';
 export class ContactComponent implements OnInit {
   submitted = false;
   success = false;
+  error = false;
   messageForm: FormGroup;
   showModal = false;  
 
@@ -50,6 +49,7 @@ export class ContactComponent implements OnInit {
   
           if (response.message === "Success"){
             this.submitted = false;
+            this.success = true;
             this.messageForm.reset();          
             this.alerts.setMessage('Message Sent!', 'success');
             console.log('yes');
@@ -57,8 +57,9 @@ export class ContactComponent implements OnInit {
 
           if (response.message !== "Success"){
             this.submitted = false;
-            this.messageForm.reset();          
-            this.alerts.setMessage('Please Try Again. Submission Was Unsuccessful.', 'warn');
+            this.error = true;
+            this.messageForm.reset(); 
+            alert('Something Went Wrong. Please Try Again');         
             console.log('yes');
           }
         }
